@@ -18,4 +18,10 @@ services:
       # of course, enable TLS and it's certificate provider
       - traefik.http.routers.https-get_bjphoster_com.tls=true
       - traefik.http.routers.https-get_bjphoster_com.tls.certresolver=letsencrypt
+    networks:
+      - traefik-proxy
     restart: unless-stopped
+
+networks:
+  traefik-proxy:
+    external: true
