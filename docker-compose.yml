@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  nyx:
+    container_name: ${TOTP_CONTAINER_NAME}
+    image: bryanpedini/go-totp:${TOTP_VERSION}
+    labels:
+      - traefik.enable=true
+      ### Section HTTP
+      - traefik.routers.http-totp_bjphoster_com.entrypoints=http
+      # redirect to HTTPS only
+      - traefik.http.routers.http-get_bjphoster_com.middlewares=http-to-https
+      - traefik.http.routers.http-get_bjphoster_com.rule=Host(`totp.bjphoster.com`)
+      ### Section HTTPS
+      - traefik.http.routers.https-get_bjphoster_com.entrypoints=https
+      # configure the exposed service
+      - traefik.http.routers.https-get_bjphoster_com.rule=Host(`totp.bjphoster.com`)
+      # of course, enable TLS and it's certificate provider
+      - traefik.http.routers.https-get_bjphoster_com.tls=true
+      - traefik.http.routers.https-get_bjphoster_com.tls.certresolver=letsencrypt
+    restart: unless-stopped
