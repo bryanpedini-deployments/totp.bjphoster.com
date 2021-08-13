@@ -7,7 +7,7 @@ services:
     labels:
       - traefik.enable=true
       ### Section HTTP
-      - traefik.routers.http-totp_bjphoster_com.entrypoints=http
+      - traefik.http.routers.http-totp_bjphoster_com.entrypoints=http
       # redirect to HTTPS only
       - traefik.http.routers.http-totp_bjphoster_com.middlewares=http-to-https
       - traefik.http.routers.http-totp_bjphoster_com.rule=Host(`totp.bjphoster.com`)
