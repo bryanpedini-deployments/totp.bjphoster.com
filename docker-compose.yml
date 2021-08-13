@@ -9,15 +9,15 @@ services:
       ### Section HTTP
       - traefik.routers.http-totp_bjphoster_com.entrypoints=http
       # redirect to HTTPS only
-      - traefik.http.routers.http-get_bjphoster_com.middlewares=http-to-https
-      - traefik.http.routers.http-get_bjphoster_com.rule=Host(`totp.bjphoster.com`)
+      - traefik.http.routers.http-totp_bjphoster_com.middlewares=http-to-https
+      - traefik.http.routers.http-totp_bjphoster_com.rule=Host(`totp.bjphoster.com`)
       ### Section HTTPS
-      - traefik.http.routers.https-get_bjphoster_com.entrypoints=https
+      - traefik.http.routers.https-totp_bjphoster_com.entrypoints=https
       # configure the exposed service
-      - traefik.http.routers.https-get_bjphoster_com.rule=Host(`totp.bjphoster.com`)
+      - traefik.http.routers.https-totp_bjphoster_com.rule=Host(`totp.bjphoster.com`)
       # of course, enable TLS and it's certificate provider
-      - traefik.http.routers.https-get_bjphoster_com.tls=true
-      - traefik.http.routers.https-get_bjphoster_com.tls.certresolver=letsencrypt
+      - traefik.http.routers.https-totp_bjphoster_com.tls=true
+      - traefik.http.routers.https-totp_bjphoster_com.tls.certresolver=letsencrypt
     networks:
       - traefik-proxy
     restart: unless-stopped
