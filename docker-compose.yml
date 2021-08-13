@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  nyx:
+  web:
     container_name: ${TOTP_CONTAINER_NAME}
     image: bryanpedini/go-totp:${TOTP_VERSION}
     labels:
